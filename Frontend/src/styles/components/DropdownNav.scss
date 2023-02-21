@@ -1,0 +1,132 @@
+@use "../variables" as *;
+@use "../mixins" as *;
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 100%;
+  }
+}
+
+.header__mobile-dropdown {
+  animation-name: appear;
+  animation-duration: 0.2s;
+
+  position: absolute;
+  top: 53px;
+  right: 7px;
+  width: 260px;
+  border: 3px solid rgb(0, 0, 0);
+  border-radius: 12px;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  direction: ltr;
+  @include tablet {
+    top: 62px;
+    right: 20px;
+  }
+  &--rtl {
+    direction: rtl;
+    right: auto;
+    left: 7px;
+
+    @include tablet {
+      right: auto;
+      left: 20px;
+    }
+  }
+
+  &-title-div {
+    box-shadow: inset 2px 2px 7px rgb(255, 255, 255);
+    padding: 12px 24px 18px 24px;
+    background-color: #fffdf8;
+    border-radius: 9px 9px 0px 0px;
+  }
+
+  &-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: black;
+    text-align: center;
+  }
+  &-links-div {
+    transform: translateY(-4px);
+    border-radius: 9px 9px 0 0;
+    border-top: 3px solid black;
+    background-color: lighten($color: $brand-color-main, $amount: 16);
+    border-bottom: 3px solid black;
+    padding: 12px 24px 24px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &-button {
+    text-decoration: none;
+    background-color: $brand-color-secondary;
+    color: black;
+    display: flex;
+    height: 40px;
+    border-radius: 6px;
+    justify-content: center;
+    align-items: center;
+    width: 160px;
+    border: 2px solid black;
+    box-shadow: inset 2px 2px 7px rgb(255, 255, 255), 2px 2px black;
+    font-weight: 600;
+    font-size: 18px;
+
+    &--login {
+      background-color: #cdff88;
+      color: black;
+      margin-bottom: 12px;
+    }
+  }
+  &-lang-switcher {
+    transform: translateY(-12px);
+    border-radius: 9px 9px 0 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    padding: 12px 24px 12px 24px;
+    background-color: lighten($color: $brand-color-main, $amount: 16);
+
+    border-top: 3px solid black;
+  }
+  &-lang-text {
+    margin-bottom: 12px;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+  }
+  &-footer {
+    border-top: 3px solid black;
+    transform: translateY(-16px);
+    width: 100%;
+    padding: 8px;
+    background-color: $nice-off-white;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    font-size: 12px;
+    gap: 5px;
+    border-radius: 9px;
+    margin-bottom: -16px;
+  }
+  &-copyright-div {
+    background-color: rgb(213, 213, 213);
+    width: 100%;
+    font-size: 12px;
+    text-align: center;
+    padding: 8px;
+    border-top: 3px dashed black;
+  }
+}

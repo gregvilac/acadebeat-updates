@@ -1,0 +1,42 @@
+@use "./variables" as *;
+
+@mixin mobile {
+  @media screen and (min-width: $mobile-width) {
+    @content;
+  }
+}
+@mixin mobile-large {
+  @media screen and (min-width: $mobile-large-width) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media screen and (min-width: $tablet-width) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media screen and (min-width: $desktop-width) {
+    @content;
+  }
+}
+
+@mixin button {
+  border: 2px solid black;
+  box-shadow: inset 2px 2px 7px rgb(255, 255, 255), 2px 2px black;
+  display: flex;
+  border-radius: 6px;
+
+  align-items: center;
+
+  text-decoration: none;
+  font-size: 16px;
+}
+
+@mixin breakpoint($width) {
+  @media screen and (min-width: $width) {
+    @content;
+  }
+}

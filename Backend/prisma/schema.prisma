@@ -1,0 +1,85 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Student {
+  id             String     @id @default(uuid())
+  name           String
+  email          String     @unique
+  password       String
+  bio            String?
+  favouritePosts Post[]
+  targetLangs    Language[] @relation("TargetLangs")
+  nativeLangs    Language[] @relation("NativeLangs")
+  level          Level      @relation(fields: [levelId], references: [id])
+  levelId        Int
+}
+
+model Teacher {
+  id       String @id @default(uuid())
+  name     String
+  email    String @unique
+  username String @unique
+  posts    Post[]
+}
+
+model Post {
+  id             Int        @id @default(autoincrement())
+  title          String
+  slug           String     @unique
+  content        Json
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+  writtenBy      Teacher    @relation(fields: [teacherID], references: [id])
+  teacherID      String
+  favouritedBy   Student?   @relation(fields: [favouritedByID], references: [id])
+  favouritedByID String?
+  categories     Category[]
+  level          Level      @relation(fields: [levelID], references: [id])
+  levelID        Int
+  language       Language   @relation(fields: [languageID], references: [id])
+  languageID     Int
+}
+
+model Category {
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+  posts Post[]
+}
+
+model Language {
+  id               Int      @id @default(autoincrement())
+  name             String
+  code             String
+  rtl              Boolean
+  neural           Boolean
+  Post             Post[]
+  studiedBy        Student? @relation("TargetLangs", fields: [studiedByID], references: [id])
+  studiedByID      String?
+  knownBy          Student? @relation("NativeLangs", fields: [knownByID], references: [id])
+  knownByID        String?
+  targetQuote      String
+  nativeQuote      String
+  targetQuoteMarks Json?
+}
+
+model Level {
+  id       Int       @id @default(autoincrement())
+  name     String
+  posts    Post[]
+  students Student[]
+}
+
+// enum Role {
+//   STUDENT
+//   TEACHER
+//   ADMIN
+// }

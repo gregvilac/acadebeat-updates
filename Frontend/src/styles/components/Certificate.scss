@@ -1,0 +1,157 @@
+@use "../variables" as *;
+@use "../mixins" as *;
+
+$colors: #f44336, #dce91e, #5eb027, #673ab7, #3f51b5, #c9f321, #f4032f, #00bcd4,
+  #009688, #372cd1, #c34abf;
+// $shuffled-colors: sort($colors, (random() * 2) - 1);
+@for $i from 1 through length($colors) {
+  .native__burst--#{$i} {
+    background-color: nth($colors, $i);
+  }
+}
+
+.native {
+  height: 180px;
+  width: 250px;
+  padding: 18px;
+  list-style: none;
+  position: relative;
+  //   border: 3px solid black;
+  background-color: $brand-color-secondary;
+  border: 3px solid rgb(0, 0, 0);
+  border-radius: 9px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+    rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+  &--selected {
+    outline: 3px solid green;
+  }
+  &:active {
+    transform: translate(1px, 1px);
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+      rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+  }
+
+  &__label {
+    font-size: 24px;
+    text-align: center;
+    padding-top: 20px;
+    font-weight: 600;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 50;
+    top: 0;
+    left: 0;
+    // text-decoration: underline;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  &__inner {
+    box-shadow: inset 0px 0px 0 1px rgb(171, 171, 171);
+    box-shadow: inset 0 0 0 2px black, inset 3px 3px 12px rgb(255, 255, 255);
+
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: lighten($color: $brand-color-main, $amount: 16);
+    padding: 12px;
+  }
+  &__circle {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    border: 1px solid rgb(171, 171, 171);
+    border: 2px solid black;
+    position: absolute;
+    background: $brand-color-secondary;
+    border-radius: 30%;
+
+    &--tl {
+      top: -10px;
+      left: -10px;
+    }
+    &--bl {
+      bottom: -10px;
+      left: -10px;
+    }
+    &--br {
+      bottom: -10px;
+      right: -10px;
+    }
+    &--tr {
+      top: -10px;
+      right: -10px;
+    }
+  }
+  // &__burst {
+  //   width: 20px;
+  //   height: 20px;
+  //   background-color: rgb(random(255), random(255), random(255));
+  //   position: absolute;
+  //   bottom: 15px;
+  //   right: 25px;
+  //   &::before {
+  //     content: "";
+  //     width: 20px;
+  //     height: 20px;
+  //     transform: rotate(45deg);
+  //     background-color: inherit;
+  //     position: absolute;
+  //   }
+  // }
+  &__burst {
+    width: 20px;
+    height: 20px;
+    transform: rotate(10deg);
+    position: absolute;
+    bottom: 15px;
+    right: 25px;
+    outline: 2px solid black;
+    z-index: 10;
+
+    &--0 {
+      background-color: magenta;
+    }
+    &::before {
+      content: "";
+      z-index: 12;
+      // box-shadow: inset 0 0 0 1px rgb(0, 0, 0);
+      outline: 2px solid black;
+      width: 20px;
+      height: 20px;
+      transform: rotate(45deg);
+      background-color: inherit;
+      position: absolute;
+    }
+    &::after {
+      content: "";
+      background-color: inherit;
+      position: absolute;
+      // box-shadow: inset 0 0 0 5px orange;
+      width: 20px;
+      height: 20px;
+      z-index: 40;
+    }
+  }
+  &__signature {
+    text-decoration: underline;
+    font-family: cursive;
+    font-size: 14px;
+    position: absolute;
+    bottom: 15px;
+    left: 25px;
+    color: rgb(158, 158, 158);
+  }
+  &__quote {
+    font-size: 10px;
+    line-height: 1;
+    text-align: center;
+  }
+}

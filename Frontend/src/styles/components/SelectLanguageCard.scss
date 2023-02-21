@@ -1,0 +1,218 @@
+@use "../variables" as *;
+@use "../mixins" as *;
+
+$colors: #f44336, #e91e63, #9c27b0, #673ab7, #3f51b5, #2196f3, #03a9f4, #00bcd4,
+  #009688, #4caf50, #8bc34a;
+// $shuffled-colors: sort($colors, (random() * 2) - 1);
+@for $i from 1 through length($colors) {
+  .card__burst--#{$i} {
+    background-color: nth($colors, $i);
+  }
+}
+
+.card {
+  border: 3px solid black;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, 1px 1px black,
+    rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+  border-radius: 12px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: background-color 0.3s;
+  width: 65%;
+  min-width: 250px;
+  margin: 0 auto;
+
+  &:active {
+    transform: translate(1px, 1px);
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+      rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+  }
+  &:hover {
+    cursor: pointer;
+  }
+  &:hover .card__bottom {
+    background-color: hsl(38, 100%, 79%);
+    background-color: hsl(38, 100%, 89%);
+    background-color: white;
+    transition: 0.3s;
+  }
+  @include breakpoint(432px) {
+    width: 48%;
+  }
+  @include breakpoint(626px) {
+    min-width: 260px;
+    max-width: 265px;
+  }
+  @include tablet {
+    width: 30%;
+
+    // flex: 1;
+  }
+  &--selected {
+    box-shadow: $brand-color-3 0px 10px 36px 0px, 1px 1px black,
+      rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+
+    &:hover .card__bottom {
+      background-color: hsl(38, 100%, 79%);
+      background-color: $brand-color-3;
+    }
+  }
+
+  &__checkbox {
+    display: none;
+    &:checked + .card__top {
+    }
+  }
+  &__top {
+    height: 100px;
+    width: 100%;
+
+    background-color: white;
+    background-color: lighten($color: $brand-color-main, $amount: 16);
+    background-color: $nice-off-white;
+    // background-color: $brand-color-main;
+    border-radius: 9px 9px 0 0;
+    box-shadow: inset 1px 1px 8px rgb(194, 194, 194);
+    z-index: 2;
+  }
+  &__check-area {
+    background-color: #ffffff;
+    width: 35px;
+    height: 35px;
+    border: 3px solid rgb(0, 0, 0);
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    border-radius: 4px;
+  }
+  &__play-button {
+    right: 0px;
+    bottom: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 7px;
+    z-index: 100;
+    border: none;
+    background-color: transparent;
+    position: absolute;
+    &:hover {
+      cursor: pointer;
+    }
+    &:hover .card__volume-icon {
+      transform: scale(1.2);
+    }
+  }
+  &__flag {
+    outline: 3px solid black;
+    transform: rotate(45deg);
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    position: absolute;
+    background-color: $nice-off-white;
+    box-shadow: 1px 1px 10px rgb(154, 154, 154);
+    z-index: 1;
+    top: 37px;
+    // top: 16px;
+    // right: 16px;
+    overflow: hidden;
+    &--selected {
+    }
+  }
+  &__burst {
+    width: 25px;
+    height: 25px;
+    transform: rotate(10deg);
+    position: absolute;
+    bottom: 15px;
+    right: 25px;
+    outline: 2px solid black;
+    z-index: 10;
+
+    &--0 {
+      background-color: magenta;
+    }
+    &::before {
+      content: "";
+      z-index: 12;
+      // box-shadow: inset 0 0 0 1px rgb(0, 0, 0);
+      outline: 2px solid black;
+      width: 25px;
+      height: 25px;
+      transform: rotate(45deg);
+      background-color: inherit;
+      position: absolute;
+    }
+    &::after {
+      content: "";
+      background-color: inherit;
+      position: absolute;
+      // box-shadow: inset 0 0 0 5px orange;
+      width: 30px;
+      height: 30px;
+      z-index: 40;
+    }
+  }
+
+  &__bottom {
+    padding: 16px;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: inset 0px 1px 6px rgb(154, 154, 154);
+    background-color: hsl(38, 100%, 89%);
+    background-color: hsl(40, 100%, 96%);
+    background-color: lighten($color: $brand-color-main, $amount: 16);
+    border-radius: 0 0 9px 9px;
+    background-size: cover;
+    border-top: 3px solid black;
+    transition: 0.3s;
+    &--selected {
+      //   box-shadow: inset 2px 2px lightgreen, inset -2px -2px lightgreen;
+      background-color: hsl(38, 100%, 79%);
+      background-color: $brand-color-3;
+      &:hover {
+        background-color: hsl(38, 100%, 79%);
+      }
+    }
+  }
+
+  &__quote-icon {
+    position: absolute;
+    width: 15px;
+    top: 15px;
+    left: 15px;
+  }
+  &__quote {
+    font-size: 18px;
+    text-align: center;
+    font-weight: normal;
+    font-style: italic;
+    color: #000000;
+    text-shadow: 1px 0px 3px rgb(255, 255, 255);
+  }
+
+  &__label {
+    position: absolute;
+    z-index: 5;
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    text-align: start;
+    font-weight: 600;
+    font-size: 24px;
+    padding: 15px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  &__volume-icon {
+  }
+}

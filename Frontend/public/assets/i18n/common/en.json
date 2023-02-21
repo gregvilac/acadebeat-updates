@@ -1,0 +1,27 @@
+{
+  "search": "Search...",
+  "start": "Start Here",
+  "good": "You got it!",
+  "greeting": "Hello! It's nice to see you here.",
+  "welcome": "Welcome to Acadebeat",
+  "login": "Login",
+  "signup": "Register",
+  "Navigation Language": "Navigation Language",
+
+  "Privacy Policy": "Privacy Policy",
+  "Terms of Use": "Terms of Use",
+  "Acadebeat Pro": "Acadebeat Pro",
+  "About Us": "About Us",
+  "Contact": "Contact",
+
+  "Language learning you'll like.": "Language learning you'll like.",
+  "Content you'll care about.": "Content you'll care about.",
+
+  "logout": "Logout",
+  "my account": "My Account",
+  "add": "Add a new post",
+
+  "from-here": "From here, you can create a new post, update your class schedule, and check for new comments on your posts.",
+  "create": "Create a new post",
+  "working": "This is working"
+}

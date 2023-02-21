@@ -1,0 +1,21 @@
+@use "../variables" as *;
+@use "../mixins" as *;
+
+.list {
+  margin: auto;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px;
+  flex-wrap: wrap;
+
+  @include breakpoint(464px) {
+  }
+  @include breakpoint(626px) {
+    padding: 32px;
+    justify-content: center;
+    gap: 32px;
+  }
+}

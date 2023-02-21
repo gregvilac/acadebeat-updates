@@ -1,0 +1,41 @@
+@use "../variables" as *;
+@use "../mixins" as *;
+
+.lang-switcher {
+  align-self: center;
+  margin: auto;
+  margin-top: 12px;
+  width: 160px;
+  background-color: #6f0c55;
+  @include button;
+  padding: 3px 5px;
+  @include tablet {
+    width: 150px;
+  }
+
+  &__globe-icon {
+    width: 25px;
+  }
+
+  &__select {
+    width: 110px;
+    color: white;
+    display: flex;
+    background-color: transparent;
+
+    border: none;
+
+    height: 30px;
+    padding: 0 2px;
+    outline: none;
+    font-weight: 600;
+    font-size: 16px;
+
+    @include tablet {
+      width: 110px;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
